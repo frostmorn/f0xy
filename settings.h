@@ -8,11 +8,14 @@
 #define MUTEX_ERROR -1
 #define DI_EVENTS 0
 #define COMMAND_TRIGGER '/'
+#define CMD_UPTIME_SIZE 170
+#define DIFFTIME_SIZE 100
 // EXIT CODES:
 
 #define EXIT_OK 0
 #define EXIT_CHECKS_FAILED 1
 #define EXIT_TERMINATE 2
+#define EXIT_NO_MEMORY 3
 
 
 #if DI_EVENTS

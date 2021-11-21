@@ -83,6 +83,10 @@ void *eventHandlerThread(void *args)
 						char *cmd_response = cmd_echo( (char *)(uint8_t *)tdata->message + 6);
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 					}
+					else if ((strstr((char *)(uint8_t *)tdata->message, "uptime") !=0) ){
+						char *cmd_response = cmd_uptime();
+						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
+					}
 					else if ((strstr((char *)(uint8_t *)tdata->message, "time") !=0) ){
 						char *cmd_response = cmd_time();
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);

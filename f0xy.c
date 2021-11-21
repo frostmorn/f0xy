@@ -2,7 +2,7 @@
 #include "checks/checks.c"
 #include "threads/threads.c"
 #include "signals.c"
-
+#include "time.h"
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
 	LOG_INFO("----> Checks completed! We are in!\n");
 
 	register_signal_catchers();
-
+	SetStartupTime();
 	StartThreads();
 	return 0;
 }
