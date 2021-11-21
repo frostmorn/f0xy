@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "signalfd.h": "c",
-        "unistd.h": "c",
-        "signal.h": "c"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
-}
