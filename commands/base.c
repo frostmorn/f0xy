@@ -10,13 +10,7 @@ char * cmd_echo(char *arg){
 char * cmd_time(){
     return asctime (get_local_time()) ;
 }
-char * cmd_help(){
-    return  "----> f0xy bot : v"    FOXY_VERSION                "\n"
-            "echo"      "\t"    "simple echo command"           "\n"
-            "time"      "\t"    "returns current local time"    "\n"
-            "restart"   "\t"    "restarts bot"                  "\n"
-            "help"      "\t"    "current command"               "\n";
-}
+
 
 char *cmd_uptime_memory = 0;
 
@@ -41,5 +35,14 @@ char * cmd_restart(){
     UnlockFileMutex();
     execv("/proc/self/exe", 0);
     exit(0);
+}
+
+char * cmd_help(){
+    return  "----> f0xy bot : v"    FOXY_VERSION                "\n"
+            "\t""Base:\n"
+            "echo"      "\t"    "simple echo command"           "\n"
+            "time"      "\t"    "returns current local time"    "\n"
+            "restart"   "\t"    "restarts bot"                  "\n"
+            "help"      "\t"    "current command"               "\n";
 }
 #endif
