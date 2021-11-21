@@ -34,7 +34,7 @@ char * GetTimeDiffStr(struct tm* TIME_1, struct tm* TIME_0){
         LOG_ERROR("<time.h>malloc failed to align memory block\n");
         exit(EXIT_NO_MEMORY);
     }
-    sprintf(difftime_memory, "%10.0lf days, %2.0lf hours, %2.0lf mins, %2.0lf secs", days, hours, mins, secs);
+    sprintf(difftime_memory, "%.0lf days, %.0lf hours, %.0lf mins, %.0lf secs", days, hours, mins, secs);
     return difftime_memory;
 }
 #endif
