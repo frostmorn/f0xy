@@ -6,25 +6,28 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/file.h>
-int f0xy_mutex_file = -1; 
+int f0xy_mutex_file = -1;
 
-int FileMutexCheck(){
+int FileMutexCheck()
+{
 	LOG_F_CALL("<checks.c> MutexCheck()[NOT_IMPLEMENTED]");
-	f0xy_mutex_file = open (MUTEX_FILENAME_PATH, O_CREAT);
-	
+	f0xy_mutex_file = open(MUTEX_FILENAME_PATH, O_CREAT);
+
 	if (f0xy_mutex_file != -1)
 		return CHECKS_OK;
 	else
 		LOG_ERROR("MUTEX_ERROR happened. exiting...")
-		return MUTEX_ERROR;
+	return MUTEX_ERROR;
 }
-void UnlockFileMutex(){
+void UnlockFileMutex()
+{
 	LOG_INFO("<checks.c> UnlockFileMutex()\n");
 	flock(f0xy_mutex_file, LOCK_UN);
 	close(f0xy_mutex_file);
 	remove(MUTEX_FILENAME_PATH);
 }
-int PerformChecks(){
+int PerformChecks()
+{
 	LOG_F_CALL("<checks.c> PerformChecks()");
 	return FileMutexCheck();
 }

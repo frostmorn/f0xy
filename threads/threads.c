@@ -11,25 +11,29 @@
 pthread_t eventHandlerThread_id;
 pthread_t toxCommunicateThread_id;
 
-void StartThreads(){
+void StartThreads()
+{
 	LOG_F_CALL("<threads.c> StartThreads()");
 
-	int err_eventHandlerThread = 
-		pthread_create(&eventHandlerThread_id, NULL, &eventHandlerThread, NULL);	
-	
-	int err_toxCommunicateThread = 
+	int err_eventHandlerThread =
+		pthread_create(&eventHandlerThread_id, NULL, &eventHandlerThread, NULL);
+
+	int err_toxCommunicateThread =
 		pthread_create(&toxCommunicateThread_id, NULL, &toxCommunicateThread, NULL);
 
 	//	TODO:	Handle errors
-	while (1){usleep(1000000);}
+	while (1)
+	{
+		usleep(1000000);
+	}
 }
 
-void StopThreads(){
+void StopThreads()
+{
 	LOG_INFO("Killing Threads\n");
 	pthread_kill(eventHandlerThread_id, SIGKILL);
 	// TODO: Save tox data on kill
 	pthread_kill(toxCommunicateThread_id, SIGKILL);
-	
 }
 
 #endif

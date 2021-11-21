@@ -7,11 +7,11 @@
 #define MUTEX_ERROR -1
 #define SIGTERM_EXIT_CODE 107
 #define DI_EVENTS 0
-    #if DI_EVENTS
-        #define DI_COUNT_CREATED_EVENTS 1
-        #define DI_COUNT_HANDLED_EVENTS 1
-    #else
-        #define DI_COUNT_CREATED_EVENTS 0
-        #define DI_COUNT_HANDLED_EVENTS 0
-    #endif
+#if DI_EVENTS
+#define DI_COUNT_CREATED_EVENTS 1
+#define DI_COUNT_HANDLED_EVENTS 1
+#else
+#define DI_COUNT_CREATED_EVENTS 0
+#define DI_COUNT_HANDLED_EVENTS 0
+#endif
 #endif
