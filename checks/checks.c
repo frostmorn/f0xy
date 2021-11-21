@@ -10,7 +10,7 @@ int f0xy_mutex_file = -1;
 
 int FileMutexCheck()
 {
-	LOG_F_CALL("<checks.c> MutexCheck()[NOT_IMPLEMENTED]");
+	LOG_F_CALL("<checks.c> MutexCheck()");
 	f0xy_mutex_file = open(MUTEX_FILENAME_PATH, O_CREAT);
 
 	if (f0xy_mutex_file != -1)
