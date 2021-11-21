@@ -12,10 +12,10 @@
 void default_exit_handler(int signum, siginfo_t *info, void *ptr)
 {
 	// TODO: Handle signal as events
-	LOG_INFO_X("SIGNAL %d recieved\n", signum);
+	LOG_INFO_X("<signal.c> SIGNAL %d recieved\n", signum);
 	UnlockFileMutex();
 	StopThreads();
-	exit(SIGTERM_EXIT_CODE);
+	exit(EXIT_TERMINATE);
 }
 
 int catch_signal(int signal, void(handler_func)(int signum, siginfo_t *info, void *ptr))

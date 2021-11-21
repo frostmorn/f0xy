@@ -2,8 +2,7 @@
 #include "checks/checks.c"
 #include "threads/threads.c"
 #include "signals.c"
-#define EXIT_OK 0
-#define EXIT_CHECKS_FAILED 1
+
 
 int main()
 {
