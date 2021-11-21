@@ -10,9 +10,14 @@
 #include <ctype.h>
 #include <unistd.h>
 #include "../types/types.c"
-
-void update_savedata_file(const Tox *tox)
+Tox *f0xy_tox = 0;
+void update_savedata_file(Tox *tox)
 {
+	LOG_INFO("<tox.c> Updating tox savedata\n");
+	Tox *tmp_tox = tox;
+	if (tmp_tox ==0){
+		tmp_tox = f0xy_tox;
+	}
 	size_t size = tox_get_savedata_size(tox);
 	uint8_t *savedata = (uint8_t *)malloc(size);
 	tox_get_savedata(tox, savedata);
@@ -117,7 +122,7 @@ Tox *create_tox()
 void run_tox()
 {
 	Tox *tox = create_tox();
-
+	f0xy_tox  = tox;
 	size_t length = tox_self_get_name_size(tox);
 	uint8_t *name = (uint8_t *)malloc(length);
 	if (!name)

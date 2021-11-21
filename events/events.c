@@ -97,6 +97,8 @@ void *eventHandlerThread(void *args)
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 					}
 					else{
+						char *cmd_response = "[ ERROR ] Command doesn't exist...";
+						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 						goto cmd_not_found;
 					}
 				}

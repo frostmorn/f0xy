@@ -21,7 +21,18 @@ void StartThreads()
 	int err_toxCommunicateThread =
 		pthread_create(&toxCommunicateThread_id, NULL, &toxCommunicateThread, NULL);
 
-	//	TODO:	Handle errors
+	// Handle pthread creation errors
+
+	if (err_eventHandlerThread != 0)
+	{
+		LOG_ERROR("<threads.c> Error while creating eventHandlerThread\n");
+		LOG_INFO_X("Error = %d\n", err_eventHandlerThread);
+	}
+	if (err_toxCommunicateThread != 0){
+		LOG_ERROR("<threads.c> Error while creating toxCommunicateThread\n");
+		LOG_INFO_X("Error = %d\n", err_toxCommunicateThread);
+	}
+
 	while (1)
 	{
 		usleep(1000000);
@@ -31,8 +42,8 @@ void StartThreads()
 void StopThreads()
 {
 	LOG_INFO("Killing Threads\n");
+	update_savedata_file(f0xy_tox);
 	pthread_kill(eventHandlerThread_id, SIGKILL);
-	// TODO: Save tox data on kill
 	pthread_kill(toxCommunicateThread_id, SIGKILL);
 }
 
