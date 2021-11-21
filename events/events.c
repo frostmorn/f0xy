@@ -87,12 +87,21 @@ void *eventHandlerThread(void *args)
 						char *cmd_response = cmd_time();
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 					}
+					else if ((strstr((char *)(uint8_t *)tdata->message, "restart") !=0) ){
+						char *cmd_response = "Restart command recieved. Initiating...";
+						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
+						cmd_restart();
+					}
 					else if ((strstr((char *)(uint8_t *)tdata->message, "help") !=0) ){
 						char *cmd_response = cmd_help();
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 					}
+					else{
+						goto cmd_not_found;
+					}
 				}
 				else{
+					cmd_not_found:
 						char *cmd_response = cmd_help();
 						tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), error);
 				}
