@@ -3,7 +3,7 @@
 #include "../checks/checks.c"
 #include "../time.h"
 #include <time.h>
-
+#include "../memory.h"
 char * cmd_echo(char *arg){
     return arg;
 }
@@ -11,25 +11,17 @@ char * cmd_time(){
     return asctime (get_local_time()) ;
 }
 
-
-char *cmd_uptime_memory = 0;
-
 char *cmd_uptime(){
-    char *diff =  GetTimeDiffStr(get_local_time(), StartupTime);
+    char *diff =  GetTimeDiffStr(get_local_time(), startup_time);
     // Allocate memory just once
-    if (!cmd_uptime_memory){
-        cmd_uptime_memory = malloc(sizeof(char)*(CMD_UPTIME_SIZE));
-    }
-    if (!cmd_uptime_memory){
-        LOG_ERROR("<commands/base.c>malloc failed to align memory block\n");
-        return "Command cannot be complete";
-    }
-    memset(cmd_uptime_memory, 0, CMD_UPTIME_SIZE);
+    cmd_uptime_memory = allocate_once(cmd_uptime_memory, CMD_UPTIME_SIZE*sizeof(char));
+
     strcpy(cmd_uptime_memory, "UPTIME:\n");
     strcat(cmd_uptime_memory, diff);
     strcat(cmd_uptime_memory, "\0");
     return cmd_uptime_memory;
 }
+
 char * cmd_restart(){
     // TODO : Check permissions for tox-user
     UnlockFileMutex();
@@ -42,6 +34,7 @@ char * cmd_help(){
             "\t""Base:\n"
             "echo"      "\t"    "simple echo command"           "\n"
             "time"      "\t"    "returns current local time"    "\n"
+            "uptime"    "\t"    "returns bot uptime"            "\n"
             "restart"   "\t"    "restarts bot"                  "\n"
             "help"      "\t"    "current command"               "\n";
 }

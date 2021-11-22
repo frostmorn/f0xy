@@ -6,7 +6,8 @@ Bot for TOX network
 ### Base:
 ```
     echo          simple echo command 
-    time          returns current local time 
+    time          returns current local time
+    uptime        returns bot uptime
     restart       restarts bot
     help          current command
 ```
