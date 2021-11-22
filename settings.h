@@ -1,6 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 #define FOXY_VERSION "0.0.1"
+#define SLEEP_BEFORE_RETRY 1000
 #define EVENT_HANDLER_SLEEP_TIME 1000
 #define MUTEX_FILENAME_PATH "/tmp/f0xy_mutex"
 #define TOX_SAVEDATA_PATH "savedata.tox"
