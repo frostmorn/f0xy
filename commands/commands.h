@@ -2,13 +2,16 @@
 #define F_COMMANDS_H
 #include "base.c"
 #include "../types/types.c"
-int ExecuteToxMessageCommand(struct ToxMessage *tdata ){
-    
-    char *cmd_response = 0;
+int ExecuteToxMessageCommand(struct ToxMessage *tdata ){   
+    TOX_ERR_FRIEND_SEND_MESSAGE error;
     if (tdata && (char *)(uint8_t *)tdata->message){
-        TOX_ERR_FRIEND_SEND_MESSAGE error;
+        
+        char *cmd_response = 0;
+
         if (tdata->message[0] == COMMAND_TRIGGER){
+    
             char *tox_message = (char *)(uint8_t *)tdata->message;
+    
             if ((strstr(tox_message, "echo ") == tox_message + 1) && strlen(tdata->message) > 6){
                 cmd_response = cmd_echo( tox_message + 6);
                 tox_friend_send_message(tdata->tox, tdata->friend_number, TOX_MESSAGE_TYPE_NORMAL, cmd_response, strlen(cmd_response), &error);
